@@ -3,7 +3,7 @@
 </header>
 <link rel="stylesheet" href="styles.css">
 <body>
-    <h3 align="center">Don't</h3>
+    <h3 align="center">Nope</h3><br>
 
     <label for="blocking">
     Blocking: 
@@ -11,11 +11,16 @@
             <input type="checkbox" checked id="blocking">
             <span class="slider"></span>
           </label>
-    </label><hr>
+    </label>
+    <hr>
     <label for="blockList">BlockList:
-        <table id="blockList"></table><hr>
-        <button id="clearBtn" class="blueish">Clear List</button>
-        <button id="blockBtn">Block Current Website</button>
+        <table id="blockList"></table>
+        <hr>
+
+        <div id="btnConainer">
+            <button id="clearBtn" class="blueish">Clear</button>
+            <button id="blockBtn">Block</button>
+        </div>
         <script src="popup.js"></script>
     </label>
 </body>

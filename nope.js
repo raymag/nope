@@ -2,7 +2,7 @@ const host = location.hostname;
 
 const blockPage = () => {
     const body = document.body;
-    body.innerHTML = `<h1 style="font-size:3rem; color:#fff">Don't.</h1>`;
+    body.innerHTML = `<h1 style="font-size:3rem; color:#fff">Nope.</h1>`;
     body.style.cssText = "height:100vh; width:100vw; background: #be75f5; display:flex; justify-content:center; align-items:center";
 }
 

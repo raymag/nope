@@ -86,13 +86,14 @@ hr {
 
 button {
     padding: 0.3rem 0.5rem;
-    margin: 0.8rem auto;
+    margin: 0.8rem 0.1rem;
     border-radius: 0.25rem;
     border: none;
     box-shadow: 1px 0px 1px #17011d60;    
     cursor: pointer;
     outline: none;
     background: #be75f5aa;
+    width: 100%;
 }
 
 button:hover {
@@ -105,4 +106,10 @@ button:hover {
 
 #clearBtn:hover {
     background: #423d8370 !important;
+}
+
+#btnConainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
