@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 1rem;
+    font-size: 0.8rem;
+    font-family: 'Poppins', monospace;
+    color: #220f31;
+}
+
+label {
+    margin: 0.5rem auto;
+}
+
+hr {
+    color: #f9f9f922;
+    margin-bottom: 0.5rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 2.9rem;
+    height: 1.4rem;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #be75f5;
+    transition: .4s;
+    border-radius: 2rem;
+}
+
+.switch .slider:hover {
+    background-color: #8a56b3;
+}
+
+.switch .slider::before {
+    position: absolute;
+    content: "";
+    height: 1.4rem;
+    width: 1.4rem;
+    left: 0.2rem;
+    background-color: #fff;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.switch input:checked + .slider::before {
+    transform: translate(1rem);
+}
+
+#blockList {
+    width: 100%;
+}
+
+#blockList a {
+    padding: 0.25rem 0.5rem;
+    font-weight: 500;
+    margin: 0.8rem auto;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    background: #be75f569;
+    color: #222;
+}
+
+#blockList a:hover {
+    background: #8652ad69;
+}
+
+button {
+    padding: 0.3rem 0.5rem;
+    margin: 0.8rem auto;
+    border-radius: 0.25rem;
+    border: none;
+    box-shadow: 1px 0px 1px #17011d60;    
+    cursor: pointer;
+    outline: none;
+    background: #be75f5aa;
+}
+
+button:hover {
+    background: #9b5ecaaa;
+}
+
+#clearBtn {
+    background: #7e75f570 !important;
+}
+
+#clearBtn:hover {
+    background: #423d8370 !important;
+}

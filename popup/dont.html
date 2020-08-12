@@ -1,8 +1,22 @@
 <!DOCTYPE html>
+<header>
+</header>
+<link rel="stylesheet" href="styles.css">
 <body>
-    <table id="blockList"></table>
-    <button id="clearBtn">Clear List</button>
-    <button id="blockBtn">Block Current Website</button>
-    <script src="popup.js"></script>
+    <h3 align="center">Don't</h3>
+
+    <label for="blocking">
+    Blocking: 
+        <label class="switch">
+            <input type="checkbox" checked id="blocking">
+            <span class="slider"></span>
+          </label>
+    </label><hr>
+    <label for="blockList">BlockList:
+        <table id="blockList"></table><hr>
+        <button id="clearBtn" class="blueish">Clear List</button>
+        <button id="blockBtn">Block Current Website</button>
+        <script src="popup.js"></script>
+    </label>
 </body>
 </html>

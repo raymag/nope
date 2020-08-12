@@ -1,7 +1,9 @@
 const host = location.hostname;
 
 const blockPage = () => {
-    document.body.innerHTML = `<h1>Don't.</h1>`;
+    const body = document.body;
+    body.innerHTML = `<h1 style="font-size:3rem; color:#fff">Don't.</h1>`;
+    body.style.cssText = "height:100vh; width:100vw; background: #be75f5; display:flex; justify-content:center; align-items:center";
 }
 
 browser.runtime.onMessage.addListener((msg) => {
@@ -11,9 +13,12 @@ browser.runtime.onMessage.addListener((msg) => {
 browser.storage.local.get('dont')
     .then((data) => {
         const blockList = data.dont.blockList;
+        const allowing = data.dont.allowing;
         if ( blockList ){
-            if ( blockList.includes( host ) ){
-                blockPage();
+            if ( allowing === false || allowing === undefined ) {
+                if ( blockList.includes( host ) ){
+                    blockPage();
+                }
             }
         }
     });
