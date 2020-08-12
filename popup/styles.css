@@ -68,10 +68,17 @@ hr {
 
 #blockList {
     width: 100%;
+    display: block;
+    max-height: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0.5rem;
+    scrollbar-color: #be75fb #bf75fb44;
+    scrollbar-width: thin;
 }
 
 #blockList a {
-    padding: 0.25rem 0.5rem;
+    padding: 0 0.5rem;
     font-weight: 500;
     margin: 0.8rem auto;
     border-radius: 0.25rem;
@@ -82,6 +89,10 @@ hr {
 
 #blockList a:hover {
     background: #8652ad69;
+}
+
+#blockList button {
+    margin: 0.2rem;
 }
 
 button {
