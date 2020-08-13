@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "nope",
+    "version": "1.0",
+    "icons": {
+        "48": "icons/icon-48.png",
+        "96": "icons/icon-96.png"
+    },
+    "description": "Blocks given domains for a given period of time, helping you to stay focused.",
+    "permissions": [
+        "activeTab",
+        "storage"
+      ],
+    "browser_action": {
+        "default_icon": "icons/icon-32.png",
+        "default_title": "Nope",
+        "default_popup": "popup/nope.html"
+    },
+    "content_scripts": [
+        {    
+            "matches": ["<all_urls>"],
+            "js": ["nope.js"],
+            "run_at": "document_end" 
+        }
+    ]
+}
