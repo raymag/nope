@@ -68,6 +68,7 @@ hr {
 
 #blockList {
     width: 100%;
+    min-width: 200px;
     display: block;
     max-height: 150px;
     overflow-y: scroll;
@@ -75,6 +76,24 @@ hr {
     padding: 0.5rem;
     scrollbar-color: #be75fb #bf75fb44;
     scrollbar-width: thin;
+}
+
+#blockList::-webkit-scrollbar {
+    background-color: #a991bbaa;
+    border-radius: 3px;
+    outline: none;
+}
+
+#blockList::-webkit-scrollbar-track {
+    background: #be75f522;
+}
+
+#blockList::-webkit-scrollbar-thumb {
+    background: #bf75fb;
+}
+
+#blockList::-webkit-scrollbar-track-piece {
+    background: #be76fb22;
 }
 
 #blockList a {

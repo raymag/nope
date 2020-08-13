@@ -5,7 +5,7 @@ blockingSwitch.addEventListener('click', () => {
 
 const blockBtn = document.querySelector('#blockBtn');
 blockBtn.addEventListener('click', () => {
-    browser.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         const tab = tabs[0];
         const url = new URL(tab.url);
         const domain = url.hostname;
@@ -16,18 +16,18 @@ blockBtn.addEventListener('click', () => {
 
 const clearBtn = document.querySelector('#clearBtn');
 clearBtn.addEventListener('click', () => {
-    browser.storage.local.clear();
+    chrome.storage.local.clear();
     clearTimeout();
     buildBlockList();
 });
 
 const log = (data) => {
-    browser.tabs.query({
-        currentWindow: true,
-        active: true
-      }).then((tabs) => {
-          browser.tabs.sendMessage(tabs[0].id, data);
-    })
+    chrome.tabs.query({
+        active: true,
+        currentWindow: true
+      }, (tabs) => {
+        chrome.tabs.sendMessage(tabs[0].id, data);
+  })
 }
 
 const addToBlockList = (domain) => {
@@ -42,34 +42,32 @@ const addToBlockList = (domain) => {
 
 const setAllowing = (value) => {
     log(`Setting allowing as ${!value}`)
-    browser.storage.local.get('dont')
-        .then(data => {
-            let dont = {};
+    chrome.storage.local.get('nope', (data) => {
+        let nope = {};
             if (data) {
-                if (data.dont) {
-                    dont = data.dont;
-                    dont.allowing = !value;
+                if (data.nope) {
+                    nope = data.nope;
+                    nope.allowing = !value;
                 } else {
-                    dont.allowing = !value;
+                    nope.allowing = !value;
                 }
             } else {
-                    dont.allowing = !value;
+                    nope.allowing = !value;
                 }
-            browser.storage.local.set({dont});
-        });
+            chrome.storage.local.set({nope});
+    });
 }
 
 const isAllowing = (callback) => {
     setTimeout(() => {
-        browser.storage.local.get('dont')
-            .then((data) => {
-                clearTimeout();
+        chrome.storage.local.get('nope', (data) => {
+            clearTimeout();
                 if (data) {
                     log('getting isAllowing');
-                    if (data.dont) {
-                        if (data.dont.allowing) {
-                            const allowing = data.dont.allowing;
-                            return callback(blocking)
+                    if (data.nope) {
+                        if (data.nope.allowing) {
+                            const allowing = data.nope.allowing;
+                            return callback(allowing)
                         } else {
                             return callback(false);
                         }
@@ -78,20 +76,19 @@ const isAllowing = (callback) => {
                     return callback(false);
                 }
             })
-    }, 500);
+    }, 500);    
 }
 
 const getBlockList = (callback) => {
     setTimeout( () => {
-        browser.storage.local.get('dont')
-        .then((data) => {
+        chrome.storage.local.get('nope', (data) => {
             clearTimeout();
             if (data) {
                 log('getting blocklist');
-                if (data.dont){
-                    if (data.dont.blockList)  {
-                        if(data.dont.blockList.length > 0){
-                            let blockList = data.dont.blockList;
+                if (data.nope){
+                    if (data.nope.blockList)  {
+                        if(data.nope.blockList.length > 0){
+                            let blockList = data.nope.blockList;
                             return callback(blockList);
                         }
                     }
@@ -99,19 +96,19 @@ const getBlockList = (callback) => {
             } 
             return callback([]);
         });
-    }, 500 )
+    }, 500 );
 }
 
 const updateBlockList = (newBlockList) => {
     log('updating')
     if (newBlockList.length !== 0){
-        let dont = {
+        let nope = {
             blockList: newBlockList
         }
         
-        browser.storage.local.set({dont});
+        chrome.storage.local.set({nope});
     } else {
-        browser.storage.local.clear();
+        chrome.storage.local.clear();
     }
     buildBlockList();
 }
@@ -153,7 +150,6 @@ const buildBlockList = () => {
                 removeBlockedHostBtn.value = blockList[i];
                 removeBlockedHostBtn.addEventListener('click', (e) => {
                     removeFromBlockList(e.target.value);
-                    removeBlockedHostBtn.removeEventListener('click');
                 })
                 
                 let row = document.createElement('tr')

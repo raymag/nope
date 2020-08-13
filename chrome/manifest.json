@@ -9,7 +9,8 @@
     "description": "Blocks given domains for a given period of time, helping you to stay focused.",
     "permissions": [
         "activeTab",
-        "storage"
+        "storage",
+        "tabs"
       ],
     "browser_action": {
         "default_icon": "icons/icon-32.png",
