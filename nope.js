@@ -10,10 +10,10 @@ browser.runtime.onMessage.addListener((msg) => {
     console.log(msg);
 });
 
-browser.storage.local.get('dont')
+browser.storage.local.get('nope')
     .then((data) => {
-        const blockList = data.dont.blockList;
-        const allowing = data.dont.allowing;
+        const blockList = data.nope.blockList;
+        const allowing = data.nope.allowing;
         if ( blockList ){
             if ( allowing === false || allowing === undefined ) {
                 if ( blockList.includes( host ) ){

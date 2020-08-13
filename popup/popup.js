@@ -42,34 +42,34 @@ const addToBlockList = (domain) => {
 
 const setAllowing = (value) => {
     log(`Setting allowing as ${!value}`)
-    browser.storage.local.get('dont')
+    browser.storage.local.get('nope')
         .then(data => {
-            let dont = {};
+            let nope = {};
             if (data) {
-                if (data.dont) {
-                    dont = data.dont;
-                    dont.allowing = !value;
+                if (data.nope) {
+                    nope = data.nope;
+                    nope.allowing = !value;
                 } else {
-                    dont.allowing = !value;
+                    nope.allowing = !value;
                 }
             } else {
-                    dont.allowing = !value;
+                    nope.allowing = !value;
                 }
-            browser.storage.local.set({dont});
+            browser.storage.local.set({nope});
         });
 }
 
 const isAllowing = (callback) => {
     setTimeout(() => {
-        browser.storage.local.get('dont')
+        browser.storage.local.get('nope')
             .then((data) => {
                 clearTimeout();
                 if (data) {
                     log('getting isAllowing');
-                    if (data.dont) {
-                        if (data.dont.allowing) {
-                            const allowing = data.dont.allowing;
-                            return callback(blocking)
+                    if (data.nope) {
+                        if (data.nope.allowing) {
+                            const allowing = data.nope.allowing;
+                            return callback(allowing)
                         } else {
                             return callback(false);
                         }
@@ -83,15 +83,15 @@ const isAllowing = (callback) => {
 
 const getBlockList = (callback) => {
     setTimeout( () => {
-        browser.storage.local.get('dont')
+        browser.storage.local.get('nope')
         .then((data) => {
             clearTimeout();
             if (data) {
                 log('getting blocklist');
-                if (data.dont){
-                    if (data.dont.blockList)  {
-                        if(data.dont.blockList.length > 0){
-                            let blockList = data.dont.blockList;
+                if (data.nope){
+                    if (data.nope.blockList)  {
+                        if(data.nope.blockList.length > 0){
+                            let blockList = data.nope.blockList;
                             return callback(blockList);
                         }
                     }
@@ -105,11 +105,11 @@ const getBlockList = (callback) => {
 const updateBlockList = (newBlockList) => {
     log('updating')
     if (newBlockList.length !== 0){
-        let dont = {
+        let nope = {
             blockList: newBlockList
         }
         
-        browser.storage.local.set({dont});
+        browser.storage.local.set({nope});
     } else {
         browser.storage.local.clear();
     }

@@ -68,6 +68,7 @@ hr {
 
 #blockList {
     width: 100%;
+    min-width: 200px;
     display: block;
     max-height: 150px;
     overflow-y: scroll;
